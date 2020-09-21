@@ -7,6 +7,8 @@ int main() {
 
     int command;
     bool flag = true;
+    struct Truck truck;
+    struct Product product;
     while (flag) {
         outputListOfCommand();
         scanf("%d", &command);
@@ -15,9 +17,36 @@ int main() {
             case 1:
                 insert_m();
                 break;
-            case 5:
-                get_m();
+            case 2:
+                insert_s();
                 break;
+            case 3:
+                del_m();
+                break;
+            case 4:
+                del_s();
+                break;
+            case 5:
+                truck = get_m();
+                outputTheTruck(truck);
+                break;
+            case 6:
+                product = get_s();
+                outputTheProduct(product);
+            case 7:
+                update_m();
+                break;
+            case 8:
+                update_s();
+                break;
+            case 9:
+                ut_m();
+                break;
+            case 10:
+                ut_s();
+                break;
+            case 11:
+
             case 12:
                 outputInformFromFile();
                 break;
@@ -29,6 +58,9 @@ int main() {
                 break;
             case 15:
                 outputTrucksIndex();
+                break;
+            case 16:
+                outputProductsFile();
                 break;
             case 0:
                 flag = false;

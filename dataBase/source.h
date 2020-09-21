@@ -17,7 +17,6 @@ struct Truck{
 
     int addressNextProduct;
     int countProducts;
-    bool deleted;
 };
 
 struct IndexTruck{
@@ -29,9 +28,8 @@ struct Product{
     int id;
     char name[20];
     int weight;
-
     int idTrucks;
-    bool deleted;
+
     int addressNextProduct;
 };
 
@@ -53,16 +51,31 @@ void checkInformFile();
 
 struct Truck createNewTruck(const struct Inform inform);
 void outputTheTruck(const struct Truck truck);
+struct Truck* getArrayOfTrucks(struct Inform inform);
 
 struct IndexTruck createNewIndexTruck(struct Truck truck, const struct Inform inform);
 void outputTheIndexTruck(const struct IndexTruck indexTruck);
+struct IndexTruck* getArrayOfIndexTrucks(const struct Inform inform);
+
+struct Product createNewProduct(const struct Inform inform);
+void outputTheProduct(const struct Product product);
+struct Product* getArrayOfProduct(const struct Inform inform);
 
 void insert_m();
-void get_m();
+void insert_s();
+void del_m();
+void del_s();
+struct Truck get_m();
+struct Product get_s();
+void update_m();
+void update_s();
+void ut_m();
+void ut_s();
 
 void clearAllFiles();
 void outputTrucksFile();
 void outputTrucksIndex();
 void outputProductsFile();
 int binarySearchIndex(int left, int right, int neededIndex, struct IndexTruck* arrayOfIndexTrucks);
+int chooseCorrectIndexOfIdTrucks(struct Inform Inform);
 #endif //DATABASE_SOURCE_H
