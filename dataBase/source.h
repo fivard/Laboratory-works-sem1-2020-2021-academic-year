@@ -7,6 +7,8 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <malloc.h>
+#include <stdlib.h>
 
 struct Truck{
     int id;
@@ -51,12 +53,16 @@ void checkInformFile();
 
 struct Truck createNewTruck(const struct Inform inform);
 void outputTheTruck(const struct Truck truck);
+
 struct IndexTruck createNewIndexTruck(struct Truck truck, const struct Inform inform);
+void outputTheIndexTruck(const struct IndexTruck indexTruck);
 
 void insert_m();
+void get_m();
 
 void clearAllFiles();
 void outputTrucksFile();
-void outputTruckIndex();
+void outputTrucksIndex();
 void outputProductsFile();
+int binarySearchIndex(int left, int right, int neededIndex, struct IndexTruck* arrayOfIndexTrucks);
 #endif //DATABASE_SOURCE_H

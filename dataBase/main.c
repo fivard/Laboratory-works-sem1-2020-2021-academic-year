@@ -15,6 +15,9 @@ int main() {
             case 1:
                 insert_m();
                 break;
+            case 5:
+                get_m();
+                break;
             case 12:
                 outputInformFromFile();
                 break;
@@ -23,6 +26,9 @@ int main() {
                 break;
             case 14:
                 outputTrucksFile();
+                break;
+            case 15:
+                outputTrucksIndex();
                 break;
             case 0:
                 flag = false;
