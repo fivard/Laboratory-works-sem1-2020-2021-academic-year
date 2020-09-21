@@ -246,13 +246,10 @@ void outputInformFromFile(){
     printf("\ncountOfTrucks is %d", inform.countOfTrucks);
     printf("\ncountOfProducts is %d\n\n", inform.countOfProducts);
 
-    //TODO Посчитать для каждого грузовика количество продуктов
-}
-void outputInformFromRAM(struct Inform inform){
-    printf("\nIdInsertedTrucks is %d", inform.idInsertedTrucks);
-    printf("\nidInsertedProducts is %d", inform.idInsertedProducts);
-    printf("\ncountOfTrucks is %d", inform.countOfTrucks);
-    printf("\ncountOfProducts is %d\n\n", inform.countOfProducts);
+    struct Truck* arrayOfTrucks = getArrayOfTrucks(inform);
+    for (int i = 0; i < inform.countOfTrucks; i++){
+        printf("[%d] trucks, count of slaves: %d\n", arrayOfTrucks[i].id, arrayOfTrucks[i].countProducts);
+    }
 }
 //-----------------------Main command---------------------------------//
 void insert_m(){
@@ -363,7 +360,46 @@ struct Truck get_m(){
 
     return searchedTruck;
 }
-struct Product get_s(){}
+struct Product get_s(){
+    struct Inform inform;
+    inform = collectInformFromInformFile();
+
+    struct IndexTruck* arrayOfIndexTrucks = getArrayOfIndexTrucks(inform);
+    int indexOfTheTruckInTheArray = chooseCorrectIndexOfIdTrucks(inform);
+    struct IndexTruck indexTruck = arrayOfIndexTrucks[indexOfTheTruckInTheArray];
+
+    FILE* trucksFile = fopen("trucks.fl", "r+b");
+    struct Truck truck;
+    fseek(trucksFile, indexTruck.address, 0);
+    fread(&truck, sizeof(struct Truck), 1, trucksFile);
+    fclose(trucksFile);
+
+    if (truck.countProducts == 0){
+        printf("This truck hasn't got a product yet\n");
+        struct Product random;
+        random.addressNextProduct=0;
+        return random;
+    }
+    int sizeOfProductsArray = truck.countProducts;
+    struct Product* arrayOfSlavesProduct;
+    arrayOfSlavesProduct = (struct Product*)malloc(sizeOfProductsArray * sizeof(struct Product));
+
+    FILE* productsFile = fopen("products.fl", "r+b");
+    fseek(productsFile, truck.addressNextProduct, 0);
+    fread(&arrayOfSlavesProduct[0], sizeof(struct Product), 1, productsFile);
+    for (int i = 1; i < sizeOfProductsArray; i++){
+        fseek(productsFile, arrayOfSlavesProduct[i-1].addressNextProduct, 0);
+        fread(&arrayOfSlavesProduct[i], sizeof(struct Product), 1, productsFile);
+    }
+
+    for (int i = 0; i < sizeOfProductsArray; i++)
+        printf("[%d] ", i);
+
+    printf("\nChoose the index of the product: ");
+    int index;
+    scanf("%d", &index);
+    return arrayOfSlavesProduct[index];
+}
 void update_m(){}
 void update_s(){}
 void ut_m(){}

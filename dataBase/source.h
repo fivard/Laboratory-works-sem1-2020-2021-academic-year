@@ -45,7 +45,6 @@ void outputListOfCommand();
 struct Inform collectInformFromInformFile();
 void setNewInform(const struct Inform inform);
 void setDefaultInform();
-void outputInformFromRAM(const struct Inform inform);
 void outputInformFromFile();
 void checkInformFile();
 
