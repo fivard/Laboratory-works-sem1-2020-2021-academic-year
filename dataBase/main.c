@@ -1,10 +1,24 @@
 #include <stdio.h>
 #include "source.h"
 
+void interactive();
+
 int main() {
     checkInformFile();
     outputInformFromFile();
 
+
+    printf("Choose the mod: \n");
+    printf("[0] - interactive \n");
+
+    int command;
+    scanf("%d", &command);
+    if (command == 0)
+        interactive();
+    return 0;
+}
+
+void interactive(){
     int command;
     bool flag = true;
     struct Truck truck;
@@ -67,5 +81,4 @@ int main() {
 
         }
     }
-    return 0;
 }
