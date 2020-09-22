@@ -32,7 +32,9 @@ int main() {
                 break;
             case 6:
                 product = get_s();
-                outputTheProduct(product);
+                if (product.addressNextProduct != -2)
+                    outputTheProduct(product);
+                break;
             case 7:
                 update_m();
                 break;
