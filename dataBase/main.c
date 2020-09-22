@@ -46,20 +46,15 @@ int main() {
                 ut_s();
                 break;
             case 11:
-
-            case 12:
                 outputInformFromFile();
                 break;
-            case 13:
+            case 12:
                 clearAllFiles();
                 break;
-            case 14:
-                outputTrucksFile();
-                break;
-            case 15:
+            case 13:
                 outputTrucksIndex();
                 break;
-            case 16:
+            case 14:
                 outputProductsFile();
                 break;
             case 0:

@@ -51,6 +51,7 @@ void checkInformFile();
 struct Truck createNewTruck(const struct Inform inform);
 void outputTheTruck(const struct Truck truck);
 struct Truck* getArrayOfTrucks(struct Inform inform);
+struct Truck getTruckById(struct Inform inform);
 
 struct IndexTruck createNewIndexTruck(struct Truck truck, const struct Inform inform);
 void outputTheIndexTruck(const struct IndexTruck indexTruck);
@@ -59,6 +60,7 @@ struct IndexTruck* getArrayOfIndexTrucks(const struct Inform inform);
 struct Product createNewProduct(const struct Inform inform);
 void outputTheProduct(const struct Product product);
 struct Product* getArrayOfProduct(const struct Inform inform);
+struct Product* getArrayOfSlavesProduct(struct Truck masterTruck);
 
 void insert_m();
 void insert_s();
@@ -72,7 +74,6 @@ void ut_m();
 void ut_s();
 
 void clearAllFiles();
-void outputTrucksFile();
 void outputTrucksIndex();
 void outputProductsFile();
 int binarySearchIndex(int left, int right, int neededIndex, struct IndexTruck* arrayOfIndexTrucks);

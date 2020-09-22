@@ -16,12 +16,10 @@ void outputListOfCommand(){
     printf("[8] - update-s\n");
     printf("[9] - ut-m\n");
     printf("[10] - ut-s\n");
-    printf("[11] - count-of-slaves-records\n");
-    printf("[12] - general-inform\n");
-    printf("[13] - clear-all-files\n\n");
-    printf("[14] - output-trucks.fl\n");
-    printf("[15] - output-trucks.ind\n");
-    printf("[16] - output-product.fl\n");
+    printf("[11] - general-inform\n");
+    printf("[12] - clear-all-files\n\n");
+    printf("[13] - output-trucks.ind\n");
+    printf("[14] - output-product.fl\n");
     printf("\n[0] - exit\n");
 }
 void clearAllFiles(){
@@ -39,20 +37,6 @@ void clearAllFiles(){
     info.idInsertedTrucks = info.countOfTrucks = info.countOfProducts = info.idInsertedProducts = 0;
     fwrite(&info, sizeof(struct Inform), 1, inform);
     fclose(inform);
-}
-void outputTrucksFile(){
-    struct Inform inform;
-    struct Truck currentTruck;
-    inform = collectInformFromInformFile();
-
-    printf("FILE TRUCKS:\n");
-    FILE* trucksFile = fopen("trucks.fl", "r+b");
-    for(int i = 0; i < inform.countOfTrucks; i++){
-        fread(&currentTruck, sizeof(struct Truck), 1, trucksFile);
-        outputTheTruck(currentTruck);
-    }
-
-    fclose(trucksFile);
 }
 void outputTrucksIndex(){
     struct Inform inform;
@@ -164,6 +148,18 @@ struct IndexTruck* getArrayOfIndexTrucks(struct Inform inform){
 
     return arrayOfIndexTrucks;
 }
+struct Truck getTruckById(struct Inform inform){
+    struct IndexTruck* arrayOfIndexTrucks = getArrayOfIndexTrucks(inform);
+    int indexOfTheTruckInTheArray = chooseCorrectIndexOfIdTrucks(inform);
+    struct IndexTruck indexTruck = arrayOfIndexTrucks[indexOfTheTruckInTheArray];
+
+    FILE* trucksFile = fopen("trucks.fl", "r+b");
+    struct Truck truck;
+    fseek(trucksFile, indexTruck.address, 0);
+    fread(&truck, sizeof(struct Truck), 1, trucksFile);
+    fclose(trucksFile);
+    return truck;
+}
 //-----------------------Product-----------------------------------//
 struct Product createNewProduct(const struct Inform inform){
     struct Product newProduct;
@@ -182,11 +178,11 @@ struct Product createNewProduct(const struct Inform inform){
     return newProduct;
 }
 void outputTheProduct(const struct Product product){
-    printf("\nproduct id = %d", product.id);
-    printf("\nproduct name = %s", product.name);
-    printf("\nproduct weight(in kg) = %d", product.weight);
-    printf("\ntrucks id = %d", product.idTrucks);
-    printf("\naddressNextProduct = %d\n", product.addressNextProduct);
+    printf("\n\tproduct id = %d", product.id);
+    printf("\n\tproduct name = %s", product.name);
+    printf("\n\tproduct weight(in kg) = %d", product.weight);
+    printf("\n\ttrucks id = %d", product.idTrucks);
+    printf("\n\taddressNextProduct = %d\n", product.addressNextProduct);
 }
 struct Product* getArrayOfProduct(struct Inform inform){
     struct Product* arrayOfProduct;
@@ -200,6 +196,22 @@ struct Product* getArrayOfProduct(struct Inform inform){
     fclose(productFile);
 
     return arrayOfProduct;
+}
+struct Product* getArrayOfSlavesProduct(struct Truck masterTruck){
+    int sizeOfProductsArray = masterTruck.countProducts;
+    struct Product* arrayOfSlavesProduct;
+    arrayOfSlavesProduct = (struct Product*)malloc(sizeOfProductsArray * sizeof(struct Product));
+
+    FILE* productsFile = fopen("products.fl", "r+b");
+    fseek(productsFile, masterTruck.addressNextProduct, 0);
+    fread(&arrayOfSlavesProduct[0], sizeof(struct Product), 1, productsFile);
+    for (int i = 1; i < sizeOfProductsArray; i++){
+        fseek(productsFile, arrayOfSlavesProduct[i-1].addressNextProduct, 0);
+        fread(&arrayOfSlavesProduct[i], sizeof(struct Product), 1, productsFile);
+    }
+    fclose(productsFile);
+
+    return arrayOfSlavesProduct;
 }
 //-----------------------Inform------------------------------------//
 void checkInformFile(){
@@ -344,7 +356,35 @@ void insert_s(){
     setNewInform(inform);
 }
 void del_m(){}
-void del_s(){}
+void del_s(){
+    struct Inform inform;
+    inform = collectInformFromInformFile();
+
+    struct Truck truck = getTruckById(inform);
+
+    if (truck.countProducts == 0){
+        printf("This truck hasn't got a product yet\n");
+        return;
+    }
+
+
+    int sizeOfProductsArray = truck.countProducts;
+    struct Product* arrayOfSlavesProduct = getArrayOfSlavesProduct(truck);
+
+    for (int i = 0; i < sizeOfProductsArray; i++)
+        printf("[%d] ", i);
+
+    printf("\nChoose the index of the product: ");
+    int indexOfDeletedProductInSmallArray;
+    scanf("%d", &indexOfDeletedProductInSmallArray);
+
+
+    struct Product deletedProduct = arrayOfSlavesProduct[indexOfDeletedProductInSmallArray];
+    struct Product* arrayOfProducts = getArrayOfProduct(inform);
+    struct Truck* arrayOfTruck = getArrayOfTrucks(inform);
+    struct IndexTruck* arrayOfIndexTruck = getArrayOfIndexTrucks(inform);
+
+}
 struct Truck get_m(){
     struct Inform inform;
     inform = collectInformFromInformFile();
@@ -364,15 +404,7 @@ struct Product get_s(){
     struct Inform inform;
     inform = collectInformFromInformFile();
 
-    struct IndexTruck* arrayOfIndexTrucks = getArrayOfIndexTrucks(inform);
-    int indexOfTheTruckInTheArray = chooseCorrectIndexOfIdTrucks(inform);
-    struct IndexTruck indexTruck = arrayOfIndexTrucks[indexOfTheTruckInTheArray];
-
-    FILE* trucksFile = fopen("trucks.fl", "r+b");
-    struct Truck truck;
-    fseek(trucksFile, indexTruck.address, 0);
-    fread(&truck, sizeof(struct Truck), 1, trucksFile);
-    fclose(trucksFile);
+    struct Truck truck = getTruckById(inform);
 
     if (truck.countProducts == 0){
         printf("This truck hasn't got a product yet\n");
@@ -380,17 +412,9 @@ struct Product get_s(){
         random.addressNextProduct=0;
         return random;
     }
-    int sizeOfProductsArray = truck.countProducts;
-    struct Product* arrayOfSlavesProduct;
-    arrayOfSlavesProduct = (struct Product*)malloc(sizeOfProductsArray * sizeof(struct Product));
 
-    FILE* productsFile = fopen("products.fl", "r+b");
-    fseek(productsFile, truck.addressNextProduct, 0);
-    fread(&arrayOfSlavesProduct[0], sizeof(struct Product), 1, productsFile);
-    for (int i = 1; i < sizeOfProductsArray; i++){
-        fseek(productsFile, arrayOfSlavesProduct[i-1].addressNextProduct, 0);
-        fread(&arrayOfSlavesProduct[i], sizeof(struct Product), 1, productsFile);
-    }
+    int sizeOfProductsArray = truck.countProducts;
+    struct Product* arrayOfSlavesProduct = getArrayOfSlavesProduct(truck);
 
     for (int i = 0; i < sizeOfProductsArray; i++)
         printf("[%d] ", i);
@@ -402,5 +426,37 @@ struct Product get_s(){
 }
 void update_m(){}
 void update_s(){}
-void ut_m(){}
-void ut_s(){}
+void ut_m(){
+    struct Inform inform;
+    struct Truck currentTruck;
+    inform = collectInformFromInformFile();
+
+    printf("FILE TRUCKS:\n");
+    FILE* trucksFile = fopen("trucks.fl", "r+b");
+    for(int i = 0; i < inform.countOfTrucks; i++){
+        fread(&currentTruck, sizeof(struct Truck), 1, trucksFile);
+        outputTheTruck(currentTruck);
+    }
+
+    fclose(trucksFile);
+}
+void ut_s(){
+    struct Inform inform;
+    struct Truck currentTruck;
+    inform = collectInformFromInformFile();
+
+    printf("FILE TRUCKS:\n");
+    FILE* trucksFile = fopen("trucks.fl", "r+b");
+    for(int i = 0; i < inform.countOfTrucks; i++){
+        fread(&currentTruck, sizeof(struct Truck), 1, trucksFile);
+        outputTheTruck(currentTruck);
+        struct Product* arrayOfSlavesProduct = getArrayOfSlavesProduct(currentTruck);
+        printf("\nPRODUCTS: \n");
+        for (int j = 0; j < currentTruck.countProducts; j++){
+            outputTheProduct(arrayOfSlavesProduct[j]);
+        }
+        printf("--------------------------------------------------------\n");
+    }
+
+    fclose(trucksFile);
+}
