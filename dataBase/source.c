@@ -424,8 +424,91 @@ struct Product get_s(){
     scanf("%d", &index);
     return arrayOfSlavesProduct[index];
 }
-void update_m(){}
-void update_s(){}
+void update_m(){
+    struct Inform inform;
+    inform = collectInformFromInformFile();
+
+    struct IndexTruck* arrayOfIndexTrucks = getArrayOfIndexTrucks(inform);
+    int indexOfSearchedId = chooseCorrectIndexOfIdTrucks(inform);
+
+    struct Truck updatedTruck;
+    FILE* trucksFile = fopen("trucks.fl", "r+b");
+    fseek(trucksFile, arrayOfIndexTrucks[indexOfSearchedId].address, 0);
+    fread(&updatedTruck, sizeof(struct Truck), 1, trucksFile);
+    fclose(trucksFile);
+
+    outputTheTruck(updatedTruck);
+    printf("Choose the field you want to change\n");
+    printf("[0] - brand\n");
+    printf("[1] - loading\n");
+    int field;
+    scanf("%d", &field);
+    if (field == 0){
+        printf("Enter a new brand:\n");
+        scanf("%s", updatedTruck.brand);
+    } else {
+        printf("Enter a new loading:\n");
+        scanf("%d", &updatedTruck.loading);
+    }
+
+    struct Truck* arrayOfTrucks = getArrayOfTrucks(inform);
+    int indexOfTruck = arrayOfIndexTrucks[indexOfSearchedId].address/ sizeof(struct Truck);
+    arrayOfTrucks[indexOfTruck] = updatedTruck;
+
+    trucksFile = fopen("trucks.fl", "w+b");
+    for (int i = 0; i < inform.countOfTrucks; i++)
+        fwrite(&arrayOfTrucks[i], sizeof(struct Truck),1,trucksFile);
+    fclose(trucksFile);
+}
+void update_s(){
+    struct Inform inform;
+    inform = collectInformFromInformFile();
+
+    struct Truck truck = getTruckById(inform);
+
+    if (truck.countProducts == 0){
+        printf("This truck hasn't got a product yet\n");
+        return;
+    }
+
+    int sizeOfProductsArray = truck.countProducts;
+    struct Product* arrayOfSlavesProduct = getArrayOfSlavesProduct(truck);
+
+    for (int i = 0; i < sizeOfProductsArray; i++)
+        printf("[%d] ", i);
+
+    printf("\nChoose the index of the product: ");
+    int index;
+    scanf("%d", &index);
+    outputTheProduct(arrayOfSlavesProduct[index]);
+    struct Product updatedProduct = arrayOfSlavesProduct[index];
+
+
+    printf("Choose the field you want to change\n");
+    printf("[0] - name\n");
+    printf("[1] - weight\n");
+    int field;
+    scanf("%d", &field);
+    if (field == 0){
+        printf("Enter a new name:\n");
+        scanf("%s", updatedProduct.name);
+    } else {
+        printf("Enter a new weight:\n");
+        scanf("%d", &updatedProduct.weight);
+    }
+
+    struct Product* arrayOfProducts = getArrayOfProduct(inform);
+    if (index == 0)
+        index = truck.addressNextProduct/ sizeof(struct Product);
+    else
+        index = arrayOfSlavesProduct[index-1].addressNextProduct/ sizeof(struct Product);
+    arrayOfProducts[index] = updatedProduct;
+
+    FILE* productsFile = fopen("products.fl", "w+b");
+    for (int i = 0; i < inform.countOfProducts; i++)
+        fwrite(&arrayOfProducts[i], sizeof(struct Product),1,productsFile);
+    fclose(productsFile);
+}
 void ut_m(){
     struct Inform inform;
     struct Truck currentTruck;
