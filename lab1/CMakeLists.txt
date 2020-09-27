@@ -3,4 +3,4 @@ project(lab1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(lab1 main.cpp graph.cpp graph.h)
+add_executable(lab1 main.cpp graph.h date.cpp date.h)

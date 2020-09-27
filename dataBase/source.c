@@ -17,9 +17,9 @@ void outputListOfCommand(){
     printf("[9] - ut-m\n");
     printf("[10] - ut-s\n");
     printf("[11] - general-inform\n");
-    printf("[12] - clear-all-files\n\n");
-    printf("[13] - output-trucks.ind\n");
-    printf("[14] - output-product.fl\n");
+    //printf("[12] - clear-all-files\n\n");
+    //printf("[13] - output-trucks.ind\n");
+    //printf("[14] - output-product.fl\n");
     printf("\n[0] - exit\n");
 }
 void clearAllFiles(){
