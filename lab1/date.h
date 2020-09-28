@@ -55,7 +55,7 @@ public:
     Date()= default;
     long long countSecForData()const;
     void createNewDataBySec(long long newSec);
-    
+
     Date& operator=(const Date& right)= default;
     friend bool operator==(const Date& left, const Date& right){
         return (left.year == right.year && left.month == right.month && left.day == right.day
@@ -83,7 +83,6 @@ public:
         return left.sec > right.sec;
     }
     friend Odds operator-(const Date& left, const Date& right) {
-
         Odds result{};
         if (right > left) {
             cout << "First date is less then second date\n";
