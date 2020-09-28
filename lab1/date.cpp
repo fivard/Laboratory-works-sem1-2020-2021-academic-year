@@ -163,7 +163,7 @@ void Date::createNewDataBySec(long long newSec){
     }
     day = countOfDays;
 
-    newSec -= numberTheDayAtYear*24*60*60;
+    newSec -= countOfDays*24*60*60;
     sec = newSec%60;
     newSec/=60;
     minutes = newSec%60;

@@ -7,22 +7,8 @@ using namespace std;
 void inform();
 
 int main() {
-/*
-    int year, month, day, hour, minutes, sec;
-    cout << "Enter a new date\n [day]/[month]/[year]/[hour]/[minutes]/[sec]\n";
-    cin >> day >> month >> year >> hour >> minutes >> sec;
-    Date newDate1(year, month, day, hour, minutes, sec);
-    cout << newDate1;
-
-    cout << "Enter a new date\n [day]/[month]/[year]/[hour]/[minutes]/[sec]\n";
-    cin >> day >> month >> year >> hour >> minutes >> sec;
-    Date newDate2(year, month, day, hour, minutes, sec);
-    cout << newDate2;
-
-    Odds odd = newDate1 - newDate2;
-    cout << odd;
-*/
-    Graph<int> graph;
+    Graph<Date> graph;
+    Date edgeWeight{};
     bool flag = true;
     int action;
 
@@ -32,15 +18,13 @@ int main() {
         switch(action){
             case 1:
                 graph.addVertex();
-                cout << "Successfully!\n";
                 break;
             case 2:
-                int firstVertex, secondVertex, edgeWeight;
-                cout << "Enter [firstVertex]/[secondVertex]/[weight]\n";
+                int firstVertex, secondVertex;
+                cout << "Enter [firstVertex]/[secondVertex]\n";
                 graph.chooseVertex();
                 cin >> firstVertex >> secondVertex >> edgeWeight;
                 graph.addEdge(firstVertex, secondVertex, edgeWeight);
-                cout << "Successfully!\n";
                 break;
             case 3:
                 int indexVertex;
@@ -48,21 +32,29 @@ int main() {
                 graph.chooseVertex();
                 cin >> indexVertex;
                 graph.deleteVertex(indexVertex);
-                cout << "Successfully!\n";
                 break;
             case 4:
                 cout << "Enter [firstVertex]/[secondVertex]\n";
                 graph.chooseVertex();
                 cin >> firstVertex >> secondVertex;
                 graph.deleteEdge(firstVertex, secondVertex);
-                cout << "Successfully!\n";
                 break;
             case 5:
                 cout << graph;
                 break;
             case 6:
+                cout << "Enter [countOfVertexes]\n";
+                int countOfVertexes;
+                cin >> countOfVertexes;
+                graph.generateRandomGraph(countOfVertexes);
+                break;
+            case 7:
+                long long minWeight;
+                minWeight = graph.MST_Kruskala();
+                cout << "All weight is " << minWeight << endl;
+                break;
+            case 8:
                 graph.clearGraph();
-                cout << "Successfully!\n";
                 break;
             case 0:
                 flag = false;
@@ -70,6 +62,7 @@ int main() {
             default:
                 cout << "Wrong case\n";
         }
+        cout << "Successfully!\n";
     }
     return 0;
 }
@@ -81,7 +74,9 @@ void inform(){
     << "[3] - deleteVertex\n"
     << "[4] - deleteEdge\n"
     << "[5] - outputGraph\n"
-    << "[6] - clearGraph\n"
+    << "[6] - randomGraph\n"
+    << "[7] - MST_Kruskala\n"
+    << "[8] - clearGraph\n"
     << "\n[0] - exit\n";
 
 }

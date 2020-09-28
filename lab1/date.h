@@ -57,6 +57,11 @@ public:
     void createNewDataBySec(long long newSec);
 
     Date& operator=(const Date& right)= default;
+    Date& operator=(const unsigned int& right){
+        unsigned long long sec = right*10000000;
+        createNewDataBySec(sec);
+        return *this;
+    }
     friend bool operator==(const Date& left, const Date& right){
         return (left.year == right.year && left.month == right.month && left.day == right.day
                 && left.hour == right.hour && left.minutes == right.minutes &&left.sec == right.sec);
@@ -81,6 +86,12 @@ public:
             return left.minutes > right.minutes;
 
         return left.sec > right.sec;
+    }
+    friend bool operator<(const Date& left, const Date& right){
+        if (left == right)
+            return false;
+
+        return !(left > right);
     }
     friend Odds operator-(const Date& left, const Date& right) {
         Odds result{};
@@ -128,6 +139,11 @@ public:
         date = newDate;
         return date;
     }
+    friend long long& operator+=(long long& left, const Date& date) {
+        long long dateSec = date.countSecForData();
+        long long newSec = dateSec + left;
+        return left;
+    }
 
     friend ostream& operator<<(std::ostream& os, const Date& date){
         string monthName[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
@@ -145,6 +161,14 @@ public:
 
         cout << " " << date.numberTheWeekAtYear << "th week\n";
         return os;
+    }
+    friend istream& operator>>(std::istream& is, Date& date) {
+        int newYear, newMonth, newDay, newHour, newMinutes, newSec;
+        cout << "Enter a new date\n [day]/[month]/[year]/[hour]/[minutes]/[sec]\n";
+        is >> newDay >> newMonth >> newYear >> newHour >> newMinutes >> newSec;
+        Date newDate(newYear, newMonth, newDay, newHour, newMinutes, newSec);
+        date = newDate;
+        return is;
     }
 };
 
