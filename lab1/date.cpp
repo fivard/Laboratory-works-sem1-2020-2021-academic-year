@@ -141,29 +141,29 @@ long long Date::countSecForData()const {
         return countSec;
 }
 void Date::createNewDataBySec(long long newSec){
-    int i = 1;
     year = month = 1;
     while (newSec >= 365 * 24 * 60 * 60) {
-        if ((i % 4 == 0 && i % 100 != 0) || i % 400 == 0)
-            newSec -= 366 * 24 * 60 * 60;
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+            if (newSec > 366 * 24 * 60 * 60)
+                newSec -= 366 * 24 * 60 * 60;
+        }
         else
             newSec -= 365 * 24 * 60 * 60;
         year++;
-        i++;
     }
-    leapYear = (i % 4 == 0 && i % 100 != 0) || i % 400 == 0;
+    leapYear = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 
     int countOfDays = newSec / 60 / 60 / 24;
+    newSec -= countOfDays*24*60*60;
     int days[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     if (leapYear)
         days[1] = 29;
-    for (i = 0; countOfDays > days[i]; i++){
+    for (int i = 0; countOfDays > days[i]; i++){
         month++;
         countOfDays -= days[i];
     }
     day = countOfDays;
 
-    newSec -= countOfDays*24*60*60;
     sec = newSec%60;
     newSec/=60;
     minutes = newSec%60;

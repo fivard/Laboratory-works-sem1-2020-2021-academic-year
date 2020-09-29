@@ -141,7 +141,7 @@ public:
     }
     friend long long& operator+=(long long& left, const Date& date) {
         long long dateSec = date.countSecForData();
-        long long newSec = dateSec + left;
+        left = dateSec + left;
         return left;
     }
 

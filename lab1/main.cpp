@@ -50,8 +50,7 @@ int main() {
                 break;
             case 7:
                 long long minWeight;
-                minWeight = graph.MST_Kruskala();
-                cout << "All weight is " << minWeight << endl;
+                graph.MST_Kruskala();
                 break;
             case 8:
                 graph.clearGraph();

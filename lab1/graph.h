@@ -160,7 +160,7 @@ public:
 
         }
     }
-    long long MST_Kruskala(){
+    void MST_Kruskala(){
         Graph mst;
         for (int i = 0; i < countOfVertexes; i++)
             mst.addVertex();
@@ -178,7 +178,6 @@ public:
             if (tree_id[firstVertex] != tree_id[secondVertex])
             {
                 T newWeight = allEdges[i].weight;
-                allWeight += newWeight;
                 mst.addEdge(firstVertex, secondVertex, newWeight);
                 int old_id = tree_id[secondVertex],  new_id = tree_id[firstVertex];
                 for (int j=0; j<countOfVertexes; ++j)
@@ -187,7 +186,6 @@ public:
             }
         }
         cout << mst;
-        return allWeight;
     }
     vector<pair<T, pair<int,int>>> sortedEdges(){
         vector<pair<T, pair<int,int>>> edges;
