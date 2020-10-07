@@ -2,15 +2,21 @@
 #include "graph.h"
 #include "date.h"
 
-using namespace std;
+namespace test {
+    int main_test(int argc, char* argv[]);
+}
 
 void inform();
 
-int main() {
+int main(int argc, char* argv[]) {
+
+    test::main_test(argc,argv);
+
     Graph<Date> graph;
     Date edgeWeight{};
     bool flag = true;
     int action;
+
 
     while(flag){
         inform();
@@ -49,7 +55,6 @@ int main() {
                 graph.generateRandomGraph(countOfVertexes);
                 break;
             case 7:
-                long long minWeight;
                 graph.MST_Kruskala();
                 break;
             case 8:
