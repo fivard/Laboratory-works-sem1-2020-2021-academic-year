@@ -6,6 +6,7 @@
 #define LAB1_DATE_H
 
 #include "graph.h"
+#include "tests/doctest.h"
 
 using namespace std;
 
