@@ -17,6 +17,7 @@
 
 using namespace std;
 
+class Test;
 
 template <class T>
 class Graph{
@@ -26,10 +27,17 @@ class Graph{
     int countOfEdges;
 
 public:
+    friend Test;
     Graph(){
         graph.clear();
         countOfEdges = 0;
         countOfVertexes = 0;
+    }
+    int getEdges(){
+        return countOfEdges;
+    }
+    int getVertexes(){
+        return countOfVertexes;
     }
     void addVertex(){
         vector<pair<T,int>> temp;
@@ -160,7 +168,7 @@ public:
 
         }
     }
-    void MST_Kruskala(){
+    long long MST_Kruskala(){
         Graph mst;
         for (int i = 0; i < countOfVertexes; i++)
             mst.addVertex();
@@ -178,6 +186,7 @@ public:
             if (tree_id[firstVertex] != tree_id[secondVertex])
             {
                 T newWeight = allEdges[i].weight;
+                allWeight += newWeight;
                 mst.addEdge(firstVertex, secondVertex, newWeight);
                 int old_id = tree_id[secondVertex],  new_id = tree_id[firstVertex];
                 for (int j=0; j<countOfVertexes; ++j)
@@ -186,6 +195,7 @@ public:
             }
         }
         cout << mst;
+        return allWeight;
     }
     vector<pair<T, pair<int,int>>> sortedEdges(){
         vector<pair<T, pair<int,int>>> edges;
@@ -220,6 +230,32 @@ public:
         cout << "\ncountOfEdges = " << tempGraph.countOfEdges << endl;
         cout << "countOfVertexes = " << tempGraph.countOfVertexes << endl;
         return os;
+    }
+
+};
+
+class Test{
+public:
+    static bool checkGeneratingGraph(Graph<int> g){
+        bool isUsed[1000] = {false};
+        for (int i = 0; i < g.countOfVertexes; ++i){
+            for (int j = 0; j < g.graph[i].size(); ++j) {
+                if (isUsed[g.graph[i][j].destination] || g.graph[i][j].destination == i)
+                    return false;
+                isUsed[g.graph[i][j].destination] = true;
+            }
+            for (bool & j : isUsed)
+                j = false;
+        }
+        return true;
+    }
+    bool checkSortedEdges(Graph<int> g){
+        g.generateRandomGraph(10);
+        vector<pair<int, pair<int,int>>> sortedEdges = g.sortedEdges();
+        for (int i = 1; i < sortedEdges.size(); i++)
+            if (sortedEdges[i-1].weight > sortedEdges[i].weight)
+                return false;
+        return true;
     }
 };
 
