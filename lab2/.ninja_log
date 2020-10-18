@@ -1,0 +1,5 @@
+# ninja log v5
+2	890	6247265736518539	lab2_autogen/timestamp	146099375160c41c
+891	6853	6247265795879313	CMakeFiles/lab2.dir/main.cpp.obj	930c888e3cd35906
+894	7066	6247265797908144	CMakeFiles/lab2.dir/lab2_autogen/mocs_compilation.cpp.obj	ea05b78bb30dd234
+901	7385	6247265801328057	CMakeFiles/lab2.dir/mainwindow.cpp.obj	dd56c469929cab49

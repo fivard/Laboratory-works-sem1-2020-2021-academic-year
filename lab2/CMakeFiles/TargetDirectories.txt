@@ -1,0 +1,5 @@
+D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/CMakeFiles/lab2.dir
+D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/CMakeFiles/edit_cache.dir
+D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/CMakeFiles/rebuild_cache.dir
+D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/CMakeFiles/lab2_autogen_timestamp_deps.dir
+D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/CMakeFiles/lab2_autogen.dir
