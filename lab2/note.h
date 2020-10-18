@@ -1,20 +1,22 @@
 #ifndef NOTE_H
 #define NOTE_H
 #include <QString>
-#include <vector>
 #include <QDateTime>
-#include "mainwindow.h"
+#include <QVector>
+#include <QDebug>
 
 
 class Note
 {
     QString text;
     QString header;
-    std::vector<QString> types;
+    QVector<QString> types;
     QDateTime dateTime;
 public:
     Note();
-    Note(QString newHeader, QString newText, std::vector<QString> newTypes, QDateTime newDateTime);
+    Note(const QString& newHeader, const QString& newText, const QVector<QString>& newTypes, const QDateTime& newDateTime);
+    Note(const QString& newHeader, const QVector<QString>& newTypes, const QDateTime& newDateTime);
+    friend QDebug operator<<(QDebug d, Note& note);
     friend class MainWindow;
 };
 

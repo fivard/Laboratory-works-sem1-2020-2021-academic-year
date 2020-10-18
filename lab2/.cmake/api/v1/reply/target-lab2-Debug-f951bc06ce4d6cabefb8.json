@@ -119,11 +119,11 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "lab2_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "lab2_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "lab2_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "lab2::@6890427a1f51a3e7e1df",

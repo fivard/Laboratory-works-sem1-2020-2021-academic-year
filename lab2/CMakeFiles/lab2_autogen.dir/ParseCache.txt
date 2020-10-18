@@ -6,6 +6,7 @@ D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/mai
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/QDateTime
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/QDebug
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/QString
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/QVector
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qalgorithms.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qarraydata.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qatomic.h
@@ -273,10 +274,9 @@ D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/mai
  mdp:C:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include/vadefs.h
  mdp:C:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include/wchar.h
  mdp:C:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include/wctype.h
- mdp:D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/mainwindow.h
  mdp:D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/note.h
 D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/note.h
+D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/main.cpp
 D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/mainwindow.cpp
  uic:ui_mainwindow.h
-D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/main.cpp
 D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/note.cpp
