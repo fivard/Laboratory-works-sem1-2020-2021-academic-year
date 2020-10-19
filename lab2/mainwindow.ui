@@ -18,20 +18,20 @@
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>490</y>
-      <width>93</width>
-      <height>28</height>
+      <y>320</y>
+      <width>141</width>
+      <height>281</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Создать нотатку</string>
     </property>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>140</y>
+      <x>310</x>
+      <y>180</y>
       <width>351</width>
       <height>421</height>
      </rect>
@@ -93,8 +93,17 @@
        </item>
        <item>
         <widget class="QLabel" name="label">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
          <property name="text">
           <string>Текст нотатки</string>
+         </property>
+         <property name="scaledContents">
+          <bool>false</bool>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

@@ -13,7 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    writtingNotesToFile();
+    writtingDataNotesToFile();
+    writtingNotesTextToFile();
     delete ui;
 }
 
@@ -41,12 +42,15 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::readingNotesFromFile()
 {
-    QFile dataNotes("dataNotes.txt");
+    QFile dataNotes("files/dataNotes.txt");
     if (!dataNotes.open(QIODevice::ReadOnly))
         return;
     while(!dataNotes.atEnd()){
+        //create header
         QString newHeader = dataNotes.readLine();
         newHeader.remove(newHeader.size()-1,1);
+
+        //create date
         QString hour, minute, second, year, month, day, countOfTypes, type;
         hour = dataNotes.readLine();
         minute = dataNotes.readLine();
@@ -58,6 +62,7 @@ void MainWindow::readingNotesFromFile()
         QDate date(year.toInt(),month.toInt(), day.toInt());
         QDateTime newDateTime(date, time);
 
+        //create types
         countOfTypes = dataNotes.readLine();
         QVector<QString> newTypes;
         for (int i = 0; i < countOfTypes.toInt(); i++){
@@ -65,7 +70,17 @@ void MainWindow::readingNotesFromFile()
             type.remove(type.size()-1,1);
             newTypes.push_back(type);
         }
-        Note newNote(newHeader,newTypes, newDateTime);
+
+        //create text
+        QString fileName = newDateTime.date().toString("dd.MM.yyyy")
+                + "_" + newDateTime.time().toString("hh.mm.ss") + ".txt";
+        QFile textNotes("files/notesText/"+fileName);
+        if (!textNotes.open(QIODevice::ReadOnly | QIODevice::Text))
+            return;
+        QString newText = textNotes.readAll();
+        textNotes.close();
+
+        Note newNote(newHeader,newText, newTypes, newDateTime);
         qDebug() << newNote;
         notes.push_back(newNote);
 
@@ -74,12 +89,13 @@ void MainWindow::readingNotesFromFile()
     dataNotes.close();
 }
 
-void MainWindow::writtingNotesToFile()
+void MainWindow::writtingDataNotesToFile()
 {
-    QFile dataNotes("dataNotes.txt");
+    QFile dataNotes("files/dataNotes.txt");
     dataNotes.open(QIODevice::WriteOnly);
     QTextStream out(&dataNotes);
-    for (int i = 0; i < notes.size(); i++){
+    for (int i = 0; i < notes.size(); i++)
+    {
         out << notes[i].header << "\n";
         out << notes[i].dateTime.time().hour() << "\n";
         out << notes[i].dateTime.time().minute() << "\n";
@@ -92,4 +108,19 @@ void MainWindow::writtingNotesToFile()
             out << notes[i].types[j] << "\n";
     }
     dataNotes.close();
+}
+
+void MainWindow::writtingNotesTextToFile()
+{
+    for (int i = 0; i < notes.size(); i++)
+    {
+        QString fileName = notes[i].dateToFileName();
+        QFile textNotes("files/notesText/"+fileName);
+        if (!textNotes.open(QIODevice::WriteOnly | QIODevice::Text)){
+            return;
+        }
+        QTextStream out(&textNotes);
+        out << notes[i].text;
+        textNotes.close();
+    }
 }

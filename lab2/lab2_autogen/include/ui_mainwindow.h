@@ -52,10 +52,10 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(660, 490, 93, 28));
+        pushButton->setGeometry(QRect(660, 320, 141, 281));
         verticalLayoutWidget_3 = new QWidget(centralwidget);
         verticalLayoutWidget_3->setObjectName(QString::fromUtf8("verticalLayoutWidget_3"));
-        verticalLayoutWidget_3->setGeometry(QRect(260, 140, 351, 421));
+        verticalLayoutWidget_3->setGeometry(QRect(310, 180, 351, 421));
         verticalLayout_3 = new QVBoxLayout(verticalLayoutWidget_3);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
@@ -109,6 +109,9 @@ public:
 
         label = new QLabel(verticalLayoutWidget_3);
         label->setObjectName(QString::fromUtf8("label"));
+        label->setFrameShape(QFrame::NoFrame);
+        label->setFrameShadow(QFrame::Plain);
+        label->setScaledContents(false);
         label->setAlignment(Qt::AlignCenter);
 
         verticalLayout->addWidget(label);
@@ -131,7 +134,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214 \320\275\320\276\321\202\320\260\321\202\320\272\321\203", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "\320\235\320\276\320\262\320\260 \320\275\320\276\321\202\320\260\321\202\320\272\320\260", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\263\320\276\320\273\320\276\320\262\320\276\320\272", nullptr));
         work->setText(QCoreApplication::translate("MainWindow", "Work", nullptr));

@@ -21,7 +21,8 @@ public:
     ~MainWindow();
 
     void readingNotesFromFile();
-    void writtingNotesToFile();
+    void writtingDataNotesToFile();
+    void writtingNotesTextToFile();
 
 private slots:
 

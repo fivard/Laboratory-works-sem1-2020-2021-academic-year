@@ -24,6 +24,14 @@ Note::Note(const QString& newHeader, const QVector<QString>& newTypes, const QDa
     text = "";
 }
 
+QString Note::dateToFileName()
+{
+    QString fileName;
+    fileName = this->dateTime.date().toString("dd.MM.yyyy");
+    fileName += "_" + this->dateTime.time().toString("hh.mm.ss") + ".txt";
+    return fileName;
+}
+
 QDebug operator<<(QDebug d, Note& note){
     d << note.header << '\n' << note.text << "\n" << note.dateTime.toString() << '\n';
     for (int i = 0; i < note.types.size(); i++)
