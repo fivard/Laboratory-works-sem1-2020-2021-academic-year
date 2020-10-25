@@ -1,0 +1,9 @@
+# ninja log v5
+11	166	6253639376938948	lab2_autogen/timestamp	146099375160c41c
+734	5101	6253580771757917	CMakeFiles/lab2.dir/main.cpp.obj	930c888e3cd35906
+13	2497	6253568482159848	CMakeFiles/lab2.dir/notewindow.cpp.obj	b4c3fb1aa544acb6
+167	2499	6253639399922228	CMakeFiles/lab2.dir/lab2_autogen/mocs_compilation.cpp.obj	ea05b78bb30dd234
+15	2939	6253639454250558	CMakeFiles/lab2.dir/mainwindow.cpp.obj	dd56c469929cab49
+784	5488	6253308098437857	CMakeFiles/lab2.dir/note.cpp.obj	92711250f7a27097
+2940	3471	6253639459280653	lab2.exe	b265546338bad4ed
+0	1206	6253643152038784	build.ninja	de6f468a3e8f740d

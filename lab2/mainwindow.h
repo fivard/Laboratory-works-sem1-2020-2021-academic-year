@@ -7,10 +7,8 @@
 #include <QStackedLayout>
 #include <QFile>
 #include <QMessageBox>
+#include <QMovie>
 #include "notewindow.h"
-
-
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -50,6 +48,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    QMovie *topGif;
 
     QVector<Note> notes;
     QVector<Note> archieve;

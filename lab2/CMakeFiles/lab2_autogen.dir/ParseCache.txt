@@ -16,15 +16,21 @@ D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/mai
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qbasicatomic.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qbytearray.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qbytearraylist.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qcborcommon.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qcborvalue.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qchar.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qcompilerdetection.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qconfig.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qcontainerfwd.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qcontainertools_impl.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qcontiguouscache.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qcoreapplication.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qcoreevent.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qdatastream.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qdatetime.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qdebug.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qeventloop.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qfactoryinterface.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qfile.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qfiledevice.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qflags.h
@@ -35,6 +41,8 @@ D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/mai
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qhashfunctions.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qiodevice.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qiterator.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qjsonobject.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qjsonvalue.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qline.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qlist.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qlocale.h
@@ -49,11 +57,14 @@ D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/mai
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qobjectdefs.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qobjectdefs_impl.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qpair.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qplugin.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qpointer.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qrect.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qrefcount.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qregexp.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qregularexpression.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qscopedpointer.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qset.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qshareddata.h
@@ -71,10 +82,13 @@ D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/mai
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qtcore-config.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qtextstream.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qtypeinfo.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qurl.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/quuid.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qvariant.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qvarlengtharray.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qvector.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtCore/qversiontagging.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/QMovie
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/QStandardItemModel
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qbrush.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qcolor.h
@@ -84,8 +98,11 @@ D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/mai
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qfontmetrics.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qicon.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qimage.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qimageiohandler.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qimagereader.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qkeysequence.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qmatrix.h
+ mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qmovie.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qpaintdevice.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qpalette.h
  mdp:C:/Qt/5.15.1/mingw81_64/include/QtGui/qpixelformat.h

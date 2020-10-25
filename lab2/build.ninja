@@ -151,7 +151,7 @@ build lab2_autogen/timestamp: CUSTOM_COMMAND C$:/Qt/5.15.1/mingw81_64/bin/moc.ex
 #############################################
 # Phony custom command for CMakeFiles\lab2_autogen_timestamp_deps
 
-build CMakeFiles/lab2_autogen_timestamp_deps: phony C$:/Qt/5.15.1/mingw81_64/bin/moc.exe C$:/Qt/5.15.1/mingw81_64/bin/uic.exe C$:/Qt/5.15.1/mingw81_64/bin/Qt5Widgets.dll
+build CMakeFiles/lab2_autogen_timestamp_deps: phony C$:/Qt/5.15.1/mingw81_64/bin/Qt5Widgets.dll C$:/Qt/5.15.1/mingw81_64/bin/uic.exe C$:/Qt/5.15.1/mingw81_64/bin/moc.exe
 
 
 #############################################

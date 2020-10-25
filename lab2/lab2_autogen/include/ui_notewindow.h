@@ -59,6 +59,7 @@ public:
 
         lineHeader = new QLineEdit(verticalLayoutWidget_3);
         lineHeader->setObjectName(QString::fromUtf8("lineHeader"));
+        lineHeader->setReadOnly(true);
 
         verticalLayout_4->addWidget(lineHeader);
 
@@ -90,6 +91,7 @@ public:
 
         textNote = new QTextEdit(verticalLayoutWidget_3);
         textNote->setObjectName(QString::fromUtf8("textNote"));
+        textNote->setReadOnly(true);
 
         verticalLayout_3->addWidget(textNote);
 

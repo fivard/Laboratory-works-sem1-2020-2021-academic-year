@@ -1208,6 +1208,18 @@
 			],
 			"type" : "STATIC",
 			"value" : "D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2"
+		},
+		{
+			"name" : "multimedia_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for multimedia."
+				}
+			],
+			"type" : "PATH",
+			"value" : "multimedia_DIR-NOTFOUND"
 		}
 	],
 	"kind" : "cache",

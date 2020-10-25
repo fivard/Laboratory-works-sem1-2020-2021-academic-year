@@ -10,6 +10,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    topGif = new QMovie("src/N6.gif");
+    ui->labelGif->setMovie(topGif);
+    topGif->start();
+
     ui->listViewMain->setModel(main_model);
     ui->listViewArchieve->setModel(arch_model);
 
@@ -168,6 +172,7 @@ void MainWindow::on_listViewMain_clicked(const QModelIndex &index)
     QPushButton *openButton = msgBox.addButton(tr("Open"), QMessageBox::ActionRole);
     QPushButton *deleteButton = msgBox.addButton(tr("Delete"), QMessageBox::ActionRole);
     QPushButton *archiveButton = msgBox.addButton(tr("Archive"), QMessageBox::ActionRole);
+    msgBox.setStandardButtons(QMessageBox::Cancel);
 
     msgBox.exec();
 
@@ -178,10 +183,10 @@ void MainWindow::on_listViewMain_clicked(const QModelIndex &index)
     }
 
     if (msgBox.clickedButton() == deleteButton){
-        main_model->removeRow(index.row());
         QFile file("files/notesText/"+notes[index.row()].dateToFileName());
         file.remove();
         notes.erase(notes.begin()+index.row());
+        main_model->removeRow(index.row());
     }
 
     if (msgBox.clickedButton() == archiveButton){
@@ -191,7 +196,6 @@ void MainWindow::on_listViewMain_clicked(const QModelIndex &index)
     }
 
 }
-
 
 void MainWindow::on_listViewArchieve_clicked(const QModelIndex &index)
 {
@@ -212,10 +216,10 @@ void MainWindow::on_listViewArchieve_clicked(const QModelIndex &index)
     }
 
     if (msgBox.clickedButton() == deleteButton){
-        arch_model->removeRow(index.row());
-        QFile file("files/notesText/"+notes[index.row()].dateToFileName());
+        QFile file("files/notesText/"+archieve[index.row()].dateToFileName());
         file.remove();
         archieve.erase(archieve.begin()+index.row());
+        arch_model->removeRow(index.row());
     }
 
     if (msgBox.clickedButton() == archiveButton){

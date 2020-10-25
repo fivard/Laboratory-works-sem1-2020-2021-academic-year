@@ -233,6 +233,9 @@ lab2_BINARY_DIR:STATIC=D:/University/Programming/Laboratory-works-sem1-2020-2021
 //Value Computed by CMake
 lab2_SOURCE_DIR:STATIC=D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2
 
+//The directory containing a CMake configuration file for multimedia.
+multimedia_DIR:PATH=multimedia_DIR-NOTFOUND
+
 
 ########################
 # INTERNAL cache entries
