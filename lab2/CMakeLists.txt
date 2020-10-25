@@ -35,6 +35,9 @@ if(ANDROID)
     mainwindow.ui
     note.h
     note.cpp
+    notewindow.cpp
+    notewindow.h
+    notewindow.ui
   )
 else()
   add_executable(lab2
@@ -44,6 +47,9 @@ else()
     mainwindow.ui
     note.h
     note.cpp
+    notewindow.cpp
+    notewindow.h
+    notewindow.ui
   )
 endif()
 

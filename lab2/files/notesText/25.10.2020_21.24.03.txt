@@ -1,0 +1,43 @@
+
+            break;
+
+
+            }
+
+
+
+        }
+
+    } else if (msgBox.clickedButton() == archiveButton) {//archive note
+
+        for(int i = 0; i < data.size(); i++){
+
+
+
+            if(data[i].title() == chosen){
+
+                main_model->removeRow(i);
+
+//                qDebug() << data[i].title();
+
+                add_note_to_table(data[i], archive, arch_model);
+
+                data.erase(data.begin() + i);
+
+                break;
+
+            }
+
+
+
+        }
+
+    } else if (msgBox.clickedButton() == cancelButton) {
+
+        // cancel
+
+    }
+
+
+
+}

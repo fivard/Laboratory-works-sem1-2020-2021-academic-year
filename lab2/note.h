@@ -21,6 +21,7 @@ public:
     QString dateToFileName();
     friend QDebug operator<<(QDebug d, Note& note);
     friend class MainWindow;
+    friend class NoteWindow;
 };
 
 #endif // NOTE_H

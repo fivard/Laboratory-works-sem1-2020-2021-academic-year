@@ -168,6 +168,7 @@ void MainWindow::on_listViewMain_clicked(const QModelIndex &index)
     QPushButton *openButton = msgBox.addButton(tr("Open"), QMessageBox::ActionRole);
     QPushButton *deleteButton = msgBox.addButton(tr("Delete"), QMessageBox::ActionRole);
     QPushButton *archiveButton = msgBox.addButton(tr("Archive"), QMessageBox::ActionRole);
+    msgBox.setStandardButtons(QMessageBox::Cancel);
 
     msgBox.exec();
 
@@ -191,7 +192,6 @@ void MainWindow::on_listViewMain_clicked(const QModelIndex &index)
     }
 
 }
-
 
 void MainWindow::on_listViewArchieve_clicked(const QModelIndex &index)
 {

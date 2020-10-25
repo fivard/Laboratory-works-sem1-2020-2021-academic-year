@@ -1,8 +1,10 @@
 lab2_autogen/timestamp: \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/QDateTime \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/QDebug \
+	C:/Qt/5.15.1/mingw81_64/include/QtCore/QFile \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/QString \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/QVector \
+	C:/Qt/5.15.1/mingw81_64/include/QtCore/qabstractitemmodel.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qalgorithms.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qarraydata.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qatomic.h \
@@ -19,6 +21,8 @@ lab2_autogen/timestamp: \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qdatastream.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qdatetime.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qdebug.h \
+	C:/Qt/5.15.1/mingw81_64/include/QtCore/qfile.h \
+	C:/Qt/5.15.1/mingw81_64/include/QtCore/qfiledevice.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qflags.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qgenericatomic.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qglobal.h \
@@ -67,6 +71,7 @@ lab2_autogen/timestamp: \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qvarlengtharray.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qvector.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtCore/qversiontagging.h \
+	C:/Qt/5.15.1/mingw81_64/include/QtGui/QStandardItemModel \
 	C:/Qt/5.15.1/mingw81_64/include/QtGui/qbrush.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtGui/qcolor.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtGui/qcursor.h \
@@ -85,14 +90,25 @@ lab2_autogen/timestamp: \
 	C:/Qt/5.15.1/mingw81_64/include/QtGui/qregion.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtGui/qrgb.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtGui/qrgba64.h \
+	C:/Qt/5.15.1/mingw81_64/include/QtGui/qstandarditemmodel.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtGui/qtgui-config.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtGui/qtguiglobal.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtGui/qtransform.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtGui/qwindowdefs.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtGui/qwindowdefs_win.h \
+	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/QDialog \
 	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/QMainWindow \
+	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/QMessageBox \
+	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/QStackedLayout \
+	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qboxlayout.h \
+	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qdialog.h \
+	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qgridlayout.h \
+	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qlayout.h \
+	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qlayoutitem.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qmainwindow.h \
+	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qmessagebox.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qsizepolicy.h \
+	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qstackedlayout.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qtabwidget.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qtwidgets-config.h \
 	C:/Qt/5.15.1/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -331,5 +347,7 @@ lab2_autogen/timestamp: \
 	D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/lab2_autogen/moc_predefs.h \
 	D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/mainwindow.h \
 	D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/note.h \
+	D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/notewindow.h \
 	D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/mainwindow.ui \
+	D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/notewindow.ui \
 	C:/Qt/Tools/CMake_64/bin/cmake.exe

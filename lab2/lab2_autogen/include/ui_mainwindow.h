@@ -15,6 +15,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTextEdit>
@@ -42,6 +43,12 @@ public:
     QCheckBox *personal;
     QLabel *label;
     QTextEdit *newText;
+    QListView *listViewMain;
+    QListView *listViewArchieve;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *pushButtonMainNotes;
+    QPushButton *pushButtonArchievedNotes;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -55,7 +62,7 @@ public:
         pushButton->setGeometry(QRect(660, 320, 141, 281));
         verticalLayoutWidget_3 = new QWidget(centralwidget);
         verticalLayoutWidget_3->setObjectName(QString::fromUtf8("verticalLayoutWidget_3"));
-        verticalLayoutWidget_3->setGeometry(QRect(310, 180, 351, 421));
+        verticalLayoutWidget_3->setGeometry(QRect(310, 180, 351, 444));
         verticalLayout_3 = new QVBoxLayout(verticalLayoutWidget_3);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
@@ -118,11 +125,35 @@ public:
 
         newText = new QTextEdit(verticalLayoutWidget_3);
         newText->setObjectName(QString::fromUtf8("newText"));
+        newText->setMinimumSize(QSize(0, 300));
+        newText->setMaximumSize(QSize(16777215, 300));
 
         verticalLayout->addWidget(newText);
 
 
         verticalLayout_3->addLayout(verticalLayout);
+
+        listViewMain = new QListView(centralwidget);
+        listViewMain->setObjectName(QString::fromUtf8("listViewMain"));
+        listViewMain->setGeometry(QRect(0, 300, 301, 300));
+        listViewArchieve = new QListView(centralwidget);
+        listViewArchieve->setObjectName(QString::fromUtf8("listViewArchieve"));
+        listViewArchieve->setGeometry(QRect(0, 300, 300, 300));
+        horizontalLayoutWidget = new QWidget(centralwidget);
+        horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setGeometry(QRect(0, 210, 301, 80));
+        horizontalLayout_3 = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        pushButtonMainNotes = new QPushButton(horizontalLayoutWidget);
+        pushButtonMainNotes->setObjectName(QString::fromUtf8("pushButtonMainNotes"));
+
+        horizontalLayout_3->addWidget(pushButtonMainNotes);
+
+        pushButtonArchievedNotes = new QPushButton(horizontalLayoutWidget);
+        pushButtonArchievedNotes->setObjectName(QString::fromUtf8("pushButtonArchievedNotes"));
+
+        horizontalLayout_3->addWidget(pushButtonArchievedNotes);
 
         MainWindow->setCentralWidget(centralwidget);
 
@@ -134,13 +165,15 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214 \320\275\320\276\321\202\320\260\321\202\320\272\321\203", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "\320\235\320\276\320\262\320\260 \320\275\320\276\321\202\320\260\321\202\320\272\320\260", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\263\320\276\320\273\320\276\320\262\320\276\320\272", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "Create new note", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "Creating new note", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "Header", nullptr));
         work->setText(QCoreApplication::translate("MainWindow", "Work", nullptr));
         learning->setText(QCoreApplication::translate("MainWindow", "Learning", nullptr));
         personal->setText(QCoreApplication::translate("MainWindow", "Personal", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "\320\242\320\265\320\272\321\201\321\202 \320\275\320\276\321\202\320\260\321\202\320\272\320\270", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Text", nullptr));
+        pushButtonMainNotes->setText(QCoreApplication::translate("MainWindow", "Main notes", nullptr));
+        pushButtonArchievedNotes->setText(QCoreApplication::translate("MainWindow", "Archived Notes", nullptr));
     } // retranslateUi
 
 };

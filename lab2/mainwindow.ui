@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Создать нотатку</string>
+     <string>Create new note</string>
     </property>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget_3">
@@ -33,7 +33,7 @@
       <x>310</x>
       <y>180</y>
       <width>351</width>
-      <height>421</height>
+      <height>444</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -45,7 +45,7 @@
        <item>
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>Нова нотатка</string>
+          <string>Creating new note</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -57,7 +57,7 @@
          <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
-            <string>Заголовок</string>
+            <string>Header</string>
            </property>
           </widget>
          </item>
@@ -100,7 +100,7 @@
           <enum>QFrame::Plain</enum>
          </property>
          <property name="text">
-          <string>Текст нотатки</string>
+          <string>Text</string>
          </property>
          <property name="scaledContents">
           <bool>false</bool>
@@ -111,9 +111,68 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="newText"/>
+        <widget class="QTextEdit" name="newText">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>300</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>300</height>
+          </size>
+         </property>
+        </widget>
        </item>
       </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QListView" name="listViewMain">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>300</y>
+      <width>301</width>
+      <height>300</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListView" name="listViewArchieve">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>300</y>
+      <width>300</width>
+      <height>300</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>210</y>
+      <width>301</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="pushButtonMainNotes">
+       <property name="text">
+        <string>Main notes</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonArchievedNotes">
+       <property name="text">
+        <string>Archived Notes</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>

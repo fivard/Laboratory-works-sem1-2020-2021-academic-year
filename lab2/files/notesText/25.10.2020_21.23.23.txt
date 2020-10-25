@@ -1,0 +1,4 @@
+ setWindowTitle("Notes");
+
+    readingNotesFromFile("files/dataNotes.txt", notes, main_model);
+    readingNotesFromFile("files/dataArchievedNotes.txt", archieve, arch_model);

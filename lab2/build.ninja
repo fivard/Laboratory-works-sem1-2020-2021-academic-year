@@ -75,6 +75,14 @@ build CMakeFiles/lab2.dir/note.cpp.obj: CXX_COMPILER__lab2_Debug note.cpp || cma
   OBJECT_DIR = CMakeFiles\lab2.dir
   OBJECT_FILE_DIR = CMakeFiles\lab2.dir
 
+build CMakeFiles/lab2.dir/notewindow.cpp.obj: CXX_COMPILER__lab2_Debug notewindow.cpp || cmake_object_order_depends_target_lab2
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles\lab2.dir\notewindow.cpp.obj.d
+  FLAGS = -g -std=gnu++11
+  INCLUDES = -I. -Ilab2_autogen/include -isystem C:/Qt/5.15.1/mingw81_64/include -isystem C:/Qt/5.15.1/mingw81_64/include/QtWidgets -isystem C:/Qt/5.15.1/mingw81_64/include/QtGui -isystem C:/Qt/5.15.1/mingw81_64/include/QtANGLE -isystem C:/Qt/5.15.1/mingw81_64/include/QtCore -isystem C:/Qt/5.15.1/mingw81_64/./mkspecs/win32-g++
+  OBJECT_DIR = CMakeFiles\lab2.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target lab2
@@ -83,7 +91,7 @@ build CMakeFiles/lab2.dir/note.cpp.obj: CXX_COMPILER__lab2_Debug note.cpp || cma
 #############################################
 # Link the executable lab2.exe
 
-build lab2.exe: CXX_EXECUTABLE_LINKER__lab2_Debug CMakeFiles/lab2.dir/lab2_autogen/mocs_compilation.cpp.obj CMakeFiles/lab2.dir/main.cpp.obj CMakeFiles/lab2.dir/mainwindow.cpp.obj CMakeFiles/lab2.dir/note.cpp.obj | C$:/Qt/5.15.1/mingw81_64/lib/libQt5Widgets.a C$:/Qt/5.15.1/mingw81_64/lib/libQt5Gui.a C$:/Qt/5.15.1/mingw81_64/lib/libQt5Core.a || lab2_autogen lab2_autogen_timestamp_deps
+build lab2.exe: CXX_EXECUTABLE_LINKER__lab2_Debug CMakeFiles/lab2.dir/lab2_autogen/mocs_compilation.cpp.obj CMakeFiles/lab2.dir/main.cpp.obj CMakeFiles/lab2.dir/mainwindow.cpp.obj CMakeFiles/lab2.dir/note.cpp.obj CMakeFiles/lab2.dir/notewindow.cpp.obj | C$:/Qt/5.15.1/mingw81_64/lib/libQt5Widgets.a C$:/Qt/5.15.1/mingw81_64/lib/libQt5Gui.a C$:/Qt/5.15.1/mingw81_64/lib/libQt5Core.a || lab2_autogen lab2_autogen_timestamp_deps
   FLAGS = -g
   LINK_LIBRARIES = C:/Qt/5.15.1/mingw81_64/lib/libQt5Widgets.a  C:/Qt/5.15.1/mingw81_64/lib/libQt5Gui.a  C:/Qt/5.15.1/mingw81_64/lib/libQt5Core.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lab2.dir
@@ -143,7 +151,7 @@ build lab2_autogen/timestamp: CUSTOM_COMMAND C$:/Qt/5.15.1/mingw81_64/bin/moc.ex
 #############################################
 # Phony custom command for CMakeFiles\lab2_autogen_timestamp_deps
 
-build CMakeFiles/lab2_autogen_timestamp_deps: phony C$:/Qt/5.15.1/mingw81_64/bin/uic.exe C$:/Qt/5.15.1/mingw81_64/bin/Qt5Widgets.dll C$:/Qt/5.15.1/mingw81_64/bin/moc.exe
+build CMakeFiles/lab2_autogen_timestamp_deps: phony C$:/Qt/5.15.1/mingw81_64/bin/moc.exe C$:/Qt/5.15.1/mingw81_64/bin/uic.exe C$:/Qt/5.15.1/mingw81_64/bin/Qt5Widgets.dll
 
 
 #############################################

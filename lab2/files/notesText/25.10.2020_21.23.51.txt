@@ -1,0 +1,5 @@
+  int position = binSearchNotePosition(0, std::max(0,list.size()-1), list, note);
+    list.insert(list.begin() + position, note);
+    model->insertRow(position);
+    auto item = new QStandardItem(note.header);
+    model->setItem(position, item);

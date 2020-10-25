@@ -82,6 +82,11 @@
 			"D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/note.h",
 			"MU",
 			"EWIEGA46WW/moc_note.cpp"
+		],
+		[
+			"D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/notewindow.h",
+			"MU",
+			"EWIEGA46WW/moc_notewindow.cpp"
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -145,6 +150,10 @@
 		],
 		[
 			"D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/note.cpp",
+			"MU"
+		],
+		[
+			"D:/University/Programming/Laboratory-works-sem1-2020-2021-academic-year/lab2/notewindow.cpp",
 			"MU"
 		]
 	],
