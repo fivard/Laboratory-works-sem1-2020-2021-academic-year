@@ -34,7 +34,7 @@ String TileMap[H] = {
 
 
 
-class PLAYER {
+class Player{
 
 public:
 
@@ -44,7 +44,7 @@ public:
     Sprite sprite;
     float currentFrame;
 
-    PLAYER(Texture &image)
+    Player(Texture &image)
     {
         sprite.setTexture(image);
         rect = FloatRect(100,180,16,16);
@@ -61,23 +61,25 @@ public:
         Collision(0);
 
 
-        if (!onGround) dy=dy+0.0005*time;
+        if (!onGround)
+            dy = dy + 0.0005*time;
         rect.top += dy*time;
         onGround=false;
         Collision(1);
 
 
         currentFrame += time * 0.005;
-        if (currentFrame > 3) currentFrame -= 3;
+        if (currentFrame > 3)
+            currentFrame -= 3;
 
 
-        if (dx>0) sprite.setTextureRect(IntRect(112+31*int(currentFrame),144,16,16));
-        if (dx<0) sprite.setTextureRect(IntRect(112+31*int(currentFrame)+16,144,-16,16));
-
+        if (dx>0)
+            sprite.setTextureRect(IntRect(112+31*int(currentFrame),144,16,16));
+        if (dx<0)
+            sprite.setTextureRect(IntRect(112+31*int(currentFrame)+16,144,-16,16));
 
         sprite.setPosition(rect.left - offsetX, rect.top - offsetY);
-
-        dx=0;
+        dx = 0;
     }
 
 
@@ -89,14 +91,19 @@ public:
             {
                 if ((TileMap[i][j]=='P') || (TileMap[i][j]=='k') || (TileMap[i][j]=='0') || (TileMap[i][j]=='r') || (TileMap[i][j]=='t') || (TileMap[i][j]=='c'))
                 {
-                    if (dy>0 && num==1)
-                    { rect.top =   i*16 -  rect.height;  dy=0;   onGround=true; }
-                    if (dy<0 && num==1)
-                    { rect.top = i*16 + 16;   dy=0;}
+                    if (dy > 0 && num == 1){
+                        rect.top = i*16 - rect.height;
+                        dy=0;
+                        onGround=true;
+                    }
+                    if (dy<0 && num==1){
+                        rect.top = i*16 + 16;
+                        dy=0;
+                    }
                     if (dx>0 && num==0)
-                    { rect.left =  j*16 -  rect.width; }
+                        rect.left = j*16 - rect.width;
                     if (dx<0 && num==0)
-                    { rect.left =  j*16 +16;}
+                        rect.left =  j*16 +16;
                 }
 
                 if (TileMap[i][j]=='c') {
@@ -108,18 +115,15 @@ public:
 
 };
 
-
-
-class ENEMY
+class Enemy
 {
 
 public:
-    float dx,dy;
+    float dx;
     FloatRect rect;
     Sprite sprite;
     float currentFrame;
     bool life;
-
 
     void set(Texture &image, int x, int y)
     {
@@ -128,21 +132,22 @@ public:
 
         dx=0.05;
         currentFrame = 0;
-        life=true;
+        life = true;
     }
 
     void update(float time)
     {
         rect.left += dx * time;
-
         Collision();
 
 
         currentFrame += time * 0.005;
-        if (currentFrame > 2) currentFrame -= 2;
+        if (currentFrame > 2)
+            currentFrame -= 2;
 
         sprite.setTextureRect(IntRect(18*int(currentFrame),   0, 16,16));
-        if (!life) sprite.setTextureRect(IntRect(58, 0, 16,16));
+        if (!life)
+            sprite.setTextureRect(IntRect(58, 0, 16,16));
 
 
         sprite.setPosition(rect.left - offsetX, rect.top - offsetY);
@@ -157,11 +162,14 @@ public:
             for (int j = rect.left/16; j<(rect.left+rect.width)/16; j++)
                 if ((TileMap[i][j]=='P') || (TileMap[i][j]=='0'))
                 {
-                    if (dx>0)
-                    { rect.left =  j*16 - rect.width; dx*=-1; }
-                    else if (dx<0)
-                    { rect.left =  j*16 + 16;  dx*=-1; }
-
+                    if (dx > 0){
+                        rect.left =  j*16 - rect.width;
+                        dx *= -1;
+                    }
+                    else if (dx < 0){
+                        rect.left =  j*16 + 16;
+                        dx*=-1;
+                    }
                 }
     }
 
@@ -172,26 +180,59 @@ public:
 int main()
 {
 
-    RenderWindow window(VideoMode(1000, 300), "SFML works!");
+    RenderWindow window(VideoMode(1000, 300), "Mario");
 
     Texture tileSet;
     tileSet.loadFromFile("images/Mario_Tileset.png");
 
 
-    PLAYER Mario(tileSet);
-    ENEMY  enemy;
+    Player Mario(tileSet);
+    Enemy enemy;
     enemy.set(tileSet,48*16,13*16);
-
 
     Sprite tile(tileSet);
 
-   /* SoundBuffer buffer;
-    buffer.loadFromFile("sound/Jump.ogg");
-    Sound sound(buffer);
+    Texture menu_texture1,menu_texture3;
+    menu_texture1.loadFromFile("images/111.png");
+    menu_texture3.loadFromFile("images/333.png");
+    Sprite menu1(menu_texture1),menu3(menu_texture3);
+    bool Menu = 1;
+    int MenuNum=0;
+    menu1.setPosition(100,30);
+    menu3.setPosition(100,100);
 
-    Music music;
-    music.openFromFile("sound/Mario_Theme.ogg");
-    music.play();*/
+    while(Menu)
+    {
+        menu1.setColor(Color::White);
+        menu3.setColor(Color::White);
+        MenuNum = 0;
+        window.clear(Color(0,0,0));
+
+        if (IntRect(100,30,300,50).contains(Mouse::getPosition(window))){
+            menu1.setColor(Color::Yellow);
+            MenuNum=1;
+        }
+        if (IntRect(100,150,300,50).contains(Mouse::getPosition(window))) {
+            menu3.setColor(Color::Yellow);
+            MenuNum=2;
+        }
+
+        if (Mouse::isButtonPressed(Mouse::Left))
+        {
+            if (MenuNum == 1)
+                Menu = false;
+            if (MenuNum == 2)  {
+                window.close();
+                Menu=false;
+            }
+
+        }
+
+        window.draw(menu1);
+        window.draw(menu3);
+
+        window.display();
+    }
 
     Clock clock;
 
@@ -201,9 +242,10 @@ int main()
         float time = clock.getElapsedTime().asMicroseconds();
         clock.restart();
 
-        time = time/500;  // здесь регулируем скорость игры
+        time = time/500;
 
-        if (time > 20) time = 20;
+        if (time > 20)
+            time = 20;
 
         Event event;
         while (window.pollEvent(event))
@@ -213,36 +255,38 @@ int main()
         }
 
 
-        if (Keyboard::isKeyPressed(Keyboard::Left))    Mario.dx=-0.1;
+        if (Keyboard::isKeyPressed(Keyboard::Left))
+            Mario.dx=-0.1;
 
-        if (Keyboard::isKeyPressed(Keyboard::Right))    Mario.dx=0.1;
+        if (Keyboard::isKeyPressed(Keyboard::Right))
+            Mario.dx=0.1;
 
         if (Keyboard::isKeyPressed(Keyboard::Up))
             if (Mario.onGround) {
                 Mario.dy=-0.27;
                 Mario.onGround=false;
-                //sound.play();
             }
-
-
 
         Mario.update(time);
         enemy.update(time);
 
 
-        if  (Mario.rect.intersects( enemy.rect ) )
+        if  (Mario.rect.intersects(enemy.rect) )
         {
             if (enemy.life) {
-                if (Mario.dy>0) { enemy.dx=0; Mario.dy=-0.2; enemy.life=false;}
-                else Mario.sprite.setColor(Color::Red);
+                if (Mario.dy > 0) {
+                    enemy.dx=0;
+                    Mario.dy=-0.2;
+                    enemy.life=false;
+                }
+                else
+                    Mario.sprite.setColor(Color::Red);
             }
         }
 
 
-        if (Mario.rect.left>200) offsetX = Mario.rect.left-200;           //смещение
-
-
-
+        if (Mario.rect.left>200)
+            offsetX = Mario.rect.left-200;
 
         window.clear(Color(107,140,255));
 
