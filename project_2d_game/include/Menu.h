@@ -86,14 +86,14 @@ public:
     }
 };
 
-class Death{
+class Banner{
 private:
     Font _font;
     Text _text;
     Texture _texture;
     Sprite _sprite;
 public:
-    Death(String font, String text, String texture){
+    Banner(String font, String text, String texture){
         _font.loadFromFile(font);
         _text.setFont(_font);
         _text.setString(text);
@@ -106,12 +106,12 @@ public:
         _sprite.setPosition(200, 0);
     }
 
-    void drawDeath(RenderWindow &window){
+    void drawBanner(RenderWindow &window){
         window.draw(_sprite);
         window.draw(_text);
     }
 
-    String control(RenderWindow &window){
+    String control(RenderWindow &window, String currentMode){
         Event event{};
         while (window.pollEvent(event))
         {
@@ -123,7 +123,7 @@ public:
                     return "Exit";
 
         }
-        return "Death";
+        return currentMode;
     }
 };
 

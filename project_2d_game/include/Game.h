@@ -7,23 +7,16 @@
 
 #include <iostream>
 #include "Player.h"
-#include "Mission.h"
 #include "Menu.h"
 #include <sstream>
-
-int drawDeathView(RenderWindow &window){
-
-
-
-    return 0;
-}
 
 bool startGame(){
     RenderWindow window(VideoMode(windowWidth, windowHeight), "Game");
 
-    Map map1(TileMap1, 1, "map.png");
+    Map map1(TileMap1,"map.png", 5);
     Menu menu("../src/musics/knopka.ogg", "../src/images/menu.jpg", "../src/images/bg1.png");
-    Death death("../src/fonts/20011.ttf", "You died\nTo go to menu\npress Space\n\nTo exit\npress Esc\n", "../src/images/missionbg.jpg");
+    Banner death("../src/fonts/20011.ttf", "You died\nTo go to menu\npress Space\n\nTo exit\npress Esc\n", "../src/images/missionbg.jpg");
+    Banner win("../src/fonts/20011.ttf", "You WON!!!\nTo go to menu\npress Space\n\nTo exit\npress Esc\n", "../src/images/missionbg.jpg");
     bool showMissionText = true;
     Font font;
     font.loadFromFile("../src/fonts/20011.ttf");
@@ -66,8 +59,7 @@ bool startGame(){
             menu.drawMenu(window);
             window.display();
 
-        }
-        else if (currentMode == "Game"){
+        } else if (currentMode == "Game"){
             window.setView(view);
             float time = clock.getElapsedTime().asMicroseconds();
             clock.restart();
@@ -86,8 +78,8 @@ bool startGame(){
                                 playerHealthString << p.health;
                                 playerScore << p.playerScore;
                                 std::ostringstream task;
-                                task << getTextMission(getCurrentMission(p.x));
-                                text.setString(playerScore.str()+"\n" + task.str());
+                                task << map1.neededScore;
+                                text.setString("Needed score\n to win - " + task.str());
                                 text.setPosition(view.getCenter().x + 125, view.getCenter().y - 110);
                                 s_quest.setPosition(view.getCenter().x + 115, view.getCenter().y - 130);
                                 showMissionText = false;
@@ -104,6 +96,11 @@ bool startGame(){
 
 
             p.update(time, map1);
+            if (p.playerScore >= map1.neededScore)
+                currentMode = "Win";
+
+            if (!p.life)
+                currentMode = "Death";
 
             window.clear();
             map1.drawMap(window);
@@ -114,8 +111,8 @@ bool startGame(){
                 playerHealthString << p.health;
                 playerScore << p.playerScore;
                 std::ostringstream task;
-                task << getTextMission(getCurrentMission(p.x));
-                text.setString(task.str());
+                task << map1.neededScore;
+                text.setString("Needed score\n to win - " + task.str());
                 text.setPosition(view.getCenter().x + 125, view.getCenter().y - 110);
                 s_quest.setPosition(view.getCenter().x + 115, view.getCenter().y - 130);
                 window.draw(s_quest);
@@ -124,17 +121,22 @@ bool startGame(){
 
             window.draw(p.sprite);
             window.display();
-            if (!p.life)
-                currentMode = "Death";
 
         } else if (currentMode == "Death") {
             view.reset(FloatRect(0, 0, 640, 480));
             window.setView(view);
             window.clear(Color(140, 80, 25));
-            currentMode = death.control(window);
-            death.drawDeath(window);
+            currentMode = death.control(window, "Death");
+            death.drawBanner(window);
             window.display();
-        } else if (currentMode == "Exit"){
+        } else if (currentMode == "Win") {
+            view.reset(FloatRect(0, 0, 640, 480));
+            window.setView(view);
+            window.clear(Color(0, 80, 25));
+            currentMode = win.control(window, "Win");
+            win.drawBanner(window);
+            window.display();
+        }else if (currentMode == "Exit"){
             window.close();
             return false;
         }

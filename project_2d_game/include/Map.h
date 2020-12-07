@@ -15,45 +15,73 @@ const int widthMap = 40;
 String TileMap1[heightMap] = {
             "0000000000000000000000000000000000000000",
             "0                                      0",
+            "0      sssss                           0",
             "0                                      0",
-            "0                                      0",
-            "000000000000000000000                  0",
-            "0      0                               0",
-            "0      0                               0",
-            "0                h                     0",
-            "0                                      0",
-            "0                                      0",
+            "00000000000    000000    000           0",
+            "0    hhh0      0                       0",
+            "0              0                       0",
+            "0     ss       0 h                     0",
+            "0              0                       0",
+            "0      000000000                       0",
             "0                          h           0",
             "0                                      0",
             "0                                      0",
             "0                                      0",
-            "0                                      0",
-            "0                           f          0",
-            "0             f                        0",
-            "0                                      0",
-            "0                                      0",
-            "0                            f         0",
-            "0                                      0",
-            "0                                      0",
-            "0        f                             0",
-            "0                                      0",
+            "0       00000000000000                 0",
+            "0       0            0      f          0",
+            "0       0     f      0                 0",
+            "0       0 s          0                 0",
+            "0       0 ss         0                 0",
+            "0       0000000      0       f         0",
+            "0             0      0                 0",
+            "0                    0                 0",
+            "0        f    s      0        s        0",
+            "0             s      0        s        0",
             "0000000000000000000000000000000000000000",
             };
+
+String TileMap2[heightMap] = {
+        "0000000000000000000000000000000000000000",
+        "0                s                     0",
+        "0           s    f s                   0",
+        "0                 0000000000           0",
+        "0              000000    000           0",
+        "0    hhh0      0                       0",
+        "0              0                       0",
+        "0     ss       0 h                     0",
+        "0              0                       0",
+        "0      000000000         0000          0",
+        "0                          h           0",
+        "0                          00          0",
+        "0                                      0",
+        "0                                      0",
+        "0       00000000000000                 0",
+        "0       0            0      f          0",
+        "0       0     f      0                 0",
+        "0       0 s          0                 0",
+        "0       0 ss         0                 0",
+        "0                    0       f         0",
+        "0             0      0                 0",
+        "0                    0                 0",
+        "0        f    s      0        s        0",
+        "0             s      0        s        0",
+        "0000000000000000000000000000000000000000",
+};
 
 class Map{
 private:
     String _map[heightMap];
     Texture _texture;
     Sprite _sprite;
-    int _lvl;
 
 public:
-    Map(String newMap[], int newLvl, String fileNameTexture){
+    int neededScore;
+    Map(String newMap[], String fileNameTexture, int score){
         for (int i = 0; i < heightMap; i++)
             _map[i] = newMap[i];
-        _lvl = newLvl;
         _texture.loadFromFile("../src/images/"+fileNameTexture);
         _sprite.setTexture(_texture);
+        neededScore = score;
     }
 
     void drawMap(RenderWindow &window){
