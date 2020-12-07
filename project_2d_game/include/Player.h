@@ -43,30 +43,38 @@ public:
     void control(float time){
         if (life) {
             if (Keyboard::isKeyPressed(Keyboard::Left)) {
-                dir = 1; speed = 0.1;
+                dir = 1;
+                speed = 0.1;
                 currentFrame += 0.005*time;
-                if (currentFrame > 3) currentFrame -= 3;
+                if (currentFrame > 3)
+                    currentFrame -= 3;
                 sprite.setTextureRect(IntRect(96 * int(currentFrame), 96, 96, 96));
             }
 
             if (Keyboard::isKeyPressed(Keyboard::Right)) {
-                dir = 0; speed = 0.1;
+                dir = 0;
+                speed = 0.1;
                 currentFrame += 0.005*time;
-                if (currentFrame > 3) currentFrame -= 3;
+                if (currentFrame > 3)
+                    currentFrame -= 3;
                 sprite.setTextureRect(IntRect(96 * int(currentFrame), 192, 96, 96));
             }
 
             if (Keyboard::isKeyPressed(Keyboard::Up)) {
-                dir = 3; speed = 0.1;
+                dir = 3;
+                speed = 0.1;
                 currentFrame += 0.005*time;
-                if (currentFrame > 3) currentFrame -= 3;
+                if (currentFrame > 3)
+                    currentFrame -= 3;
                 sprite.setTextureRect(IntRect(96 * int(currentFrame), 307, 96, 96));
             }
 
             if (Keyboard::isKeyPressed(Keyboard::Down)) {
-                dir = 2; speed = 0.1;
+                dir = 2;
+                speed = 0.1;
                 currentFrame += 0.005*time;
-                if (currentFrame > 3) currentFrame -= 3;
+                if (currentFrame > 3)
+                    currentFrame -= 3;
                 sprite.setTextureRect(IntRect(96 * int(currentFrame), 0, 96, 96));
             }
             getPlayerCoordinateForView(x, y);
@@ -103,6 +111,7 @@ public:
         interactionWithMap(currentMap);
         if (health <= 0)
             life = false;
+
     }
 
     void interactionWithMap(Map &currentMap){
@@ -137,6 +146,18 @@ public:
                     currentMap.setTile(i, j, ' ');
                 }
             }
+    }
+
+    void resetPlayer(float X, float Y, float W, float H){
+            dir = playerScore = 0;
+            health = 100;
+            dx = dy = speed = currentFrame = 0;
+            life = true;
+            w = W;
+            h = H;
+            x = X;
+            y = Y;
+            sprite.setTextureRect(IntRect(0, 0, w, h));
     }
 };
 
