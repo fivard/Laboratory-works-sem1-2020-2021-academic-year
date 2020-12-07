@@ -5,6 +5,8 @@
 #ifndef PROJECT_2D_GAME_MENU_H
 #define PROJECT_2D_GAME_MENU_H
 
+#include <sstream>
+
 const int windowWidth = 1600;
 const int windowHeight = 960;
 
@@ -69,18 +71,16 @@ public:
 
         if (Mouse::isButtonPressed(Mouse::Left))
         {
+            button.play();
             if (menuNum == 1)
                 return "Game";
-            if (menuNum == 2) {
-                /*window.display();
-                while (!Keyboard::isKeyPressed(Keyboard::Escape));*/
-            }
+            if (menuNum == 2)
+                return "Settings";
             if (menuNum == 3)  {
                 window.close();
                 return "Exit";
             }
 
-            button.play();
         }
         return "Menu";
     }
@@ -126,5 +126,25 @@ public:
         return "Death";
     }
 };
+
+void drawStats(RenderWindow &window, Player &player){
+    Texture texture;
+    texture.loadFromFile("../src/images/missionbg.jpg");
+    Sprite sprite;
+    sprite.setTexture(texture);
+    sprite.setScale(0.3f, 0.2f);
+    sprite.setPosition(view.getCenter().x - 320, view.getCenter().y + 120);
+
+    Font font;
+    font.loadFromFile("../src/fonts/20011.ttf");
+    std::ostringstream playerHealthString, playerScore;
+    playerHealthString << player.health;
+    playerScore << player.playerScore;
+    Text text("Health - " + playerHealthString.str() + "\nScore - " + playerScore.str(), font, 14);
+    text.setPosition(view.getCenter().x - 310, view.getCenter().y + 130);
+    text.setColor(Color::Black);
+    window.draw(sprite);
+    window.draw(text);
+}
 
 #endif //PROJECT_2D_GAME_MENU_H
