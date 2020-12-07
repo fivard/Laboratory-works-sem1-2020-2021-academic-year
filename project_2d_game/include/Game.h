@@ -9,6 +9,14 @@
 #include "Player.h"
 #include "Mission.h"
 #include "Menu.h"
+#include <sstream>
+
+int drawDeathView(RenderWindow &window){
+
+
+
+    return 0;
+}
 
 bool startGame(){
     RenderWindow window(VideoMode(windowWidth, windowHeight), "Game");
@@ -39,6 +47,8 @@ bool startGame(){
     String currentMode = "Menu";
     while (window.isOpen()){
         if (currentMode == "Menu") {
+            p.resetPlayer(32, 32, 96.0, 96.0);
+            map1.resetMap(TileMap1);
             view.reset(FloatRect(0, 0, windowWidth, windowHeight));
             window.setView(view);
             Event event;
@@ -48,15 +58,16 @@ bool startGame(){
                     window.close();
             }
             currentMode = menu.controlMenu(window);
+            if (currentMode == "Game")
+                view.reset(FloatRect(0, 0, 640, 480));
+
+
             window.clear();
             menu.drawMenu(window);
             window.display();
 
-            p.resetPlayer(32, 32, 96.0, 96.0);
-            map1.resetMap(TileMap1);
         }
         else if (currentMode == "Game"){
-            view.reset(FloatRect(0, 0, 640, 480));
             window.setView(view);
             float time = clock.getElapsedTime().asMicroseconds();
             clock.restart();
@@ -117,6 +128,8 @@ bool startGame(){
                 currentMode = "Death";
 
         } else if (currentMode == "Death") {
+            view.reset(FloatRect(0, 0, 640, 480));
+            window.setView(view);
             window.clear(Color(140, 80, 25));
             currentMode = death.control(window);
             death.drawDeath(window);

@@ -15,7 +15,7 @@ const int widthMap = 40;
 String TileMap1[heightMap] = {
             "0000000000000000000000000000000000000000",
             "0                                      0",
-            "0     fff                              0",
+            "0                                      0",
             "0                                      0",
             "000000000000000000000                  0",
             "0      0                               0",
@@ -87,15 +87,6 @@ public:
     void resetMap(String newMap[]){
         for (int i = 0; i < heightMap; i++)
             _map[i] = newMap[i];
-    }
-
-    void outMap(){
-        for (int i = 0; i < heightMap; i++) {
-            for (int j = 0; j < widthMap; j++)
-                std::cout << char(_map[i][j]);
-            std::cout << std::endl;
-        }
-        std::cout << std::endl;
     }
 };
 
