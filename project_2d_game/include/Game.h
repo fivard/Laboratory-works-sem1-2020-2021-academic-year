@@ -34,7 +34,8 @@ bool startGame(){
     Music music;
     music.openFromFile("../src/musics/srednevekove-950.ogg");
     music.setLoop(true);
-    //music.play();
+    music.setVolume(5);
+    music.play();
 
     Player p("hero.png", 32, 32, 96.0, 96.0);
     String currentMode = "Menu";
