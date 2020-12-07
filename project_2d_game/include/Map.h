@@ -83,6 +83,12 @@ public:
         _map[i][j] = newTile;
     }
 
+
+    void resetMap(String newMap[]){
+        for (int i = 0; i < heightMap; i++)
+            _map[i] = newMap[i];
+    }
+
     void outMap(){
         for (int i = 0; i < heightMap; i++) {
             for (int j = 0; j < widthMap; j++)

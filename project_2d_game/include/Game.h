@@ -8,120 +8,21 @@
 #include <iostream>
 #include "Player.h"
 #include "Mission.h"
+#include "Menu.h"
 #include <sstream>
 
-const int windowWidth = 1600;
-const int windowHeight = 960;
-
-bool drawMenu(RenderWindow & window) {
-
-    SoundBuffer buttonBuffer;
-    buttonBuffer.loadFromFile("../src/musics/knopka.ogg");
-    Sound button(buttonBuffer);
-    button.setVolume(10);
-
-    Image menu;
-    menu.loadFromFile("../src/images/menu.jpg");
-    menu.createMaskFromColor(Color(255, 255, 255));
-    menu.createMaskFromColor(Color(255, 243, 205));
-    menu.createMaskFromColor(Color(245, 246, 238));
-
-    Texture menuTexture, menuBackground;
-    menuTexture.loadFromImage(menu);
-    menuBackground.loadFromFile("../src/images/bg1.png");
-    Sprite menu1(menuTexture), menu2(menuTexture), menu3(menuTexture), menuBg(menuBackground);
-    int menuNum = 0;
-    menu1.setTextureRect(IntRect(142,100, 571, 190));
-    menu1.setPosition(windowWidth/2 - 571/2, 30);
-
-    menu2.setTextureRect(IntRect(142,320, 571, 190));
-    menu2.setPosition(windowWidth/2- 571/2, 220);
-
-    menu3.setTextureRect(IntRect(142,760, 571, 190));
-    menu3.setPosition(windowWidth/2- 571/2, 410);
-    menuBg.setPosition(0, 0);
-    menuBg.setScale(2.5f, 3.4f);
-
-    menu1.setColor(Color::White);
-    menu2.setColor(Color::White);
-    menu3.setColor(Color::White);
-    menuNum = 0;
-
-    if (IntRect(windowWidth/2 - 571/2, 30, 571, 190).contains(Mouse::getPosition(window))) {
-        menu1.setColor(Color::Blue);
-        menuNum = 1;
-    }
-    if (IntRect(windowWidth/2 - 571/2, 220, 571, 190).contains(Mouse::getPosition(window))) {
-        menu2.setColor(Color::Blue);
-        menuNum = 2;
-    }
-    if (IntRect(windowWidth/2 - 571/2, 410, 571, 190).contains(Mouse::getPosition(window))) {
-        menu3.setColor(Color::Blue);
-        menuNum = 3;
-    }
-
-    if (Mouse::isButtonPressed(Mouse::Left))
-    {
-        if (menuNum == 1)
-            return false;
-        if (menuNum == 2) {
-            window.display();
-            while (!Keyboard::isKeyPressed(Keyboard::Escape));
-        }
-        if (menuNum == 3)  {
-            window.close();
-            return false;
-        }
-
-        button.play();
-    }
-
-    window.clear();
-    window.draw(menuBg);
-    window.draw(menu1);
-    window.draw(menu2);
-    window.draw(menu3);
-
-    window.display();
-    return true;
-}
-
-bool drawDeathView(RenderWindow &window){
-    Font font;
-    font.loadFromFile("../src/fonts/20011.ttf");
-    Text text("You died\nTo go to menu\n press Space\n", font, 14);
-    text.setFillColor(Color::Black);
-
-    Texture quest_texture;
-    quest_texture.loadFromFile("../src/images/missionbg.jpg");
-    Sprite s_quest;
-    s_quest.setTexture(quest_texture);
-    s_quest.setScale(0.6f, 0.6f);
+int drawDeathView(RenderWindow &window){
 
 
 
-    text.setPosition(200, 200);
-    s_quest.setPosition(150, 150);
-    window.draw(s_quest);
-    window.draw(text);
-    window.display();
-    Event event{};
-    while (window.pollEvent(event))
-    {
-        if (event.type == Event::KeyPressed)
-            if (event.key.code == Keyboard::Space)
-                return true;
-        if (event.type == Event::KeyPressed)
-            if (event.key.code == Keyboard::Escape)
-                return false;
-
-    }
+    return 0;
 }
 
 bool startGame(){
     RenderWindow window(VideoMode(windowWidth, windowHeight), "Game");
     Map map1(TileMap1, 1, "map.png");
-
+    Menu menu("../src/musics/knopka.ogg", "../src/images/menu.jpg", "../src/images/bg1.png");
+    Death death("../src/fonts/20011.ttf", "You died\nTo go to menu\n press Space\n", "../src/images/missionbg.jpg");
     //bool showMissionText = true;
     /*Font font;
     font.loadFromFile("../src/fonts/20011.ttf");
@@ -133,8 +34,6 @@ bool startGame(){
     Sprite s_quest;
     s_quest.setTexture(quest_texture);
     s_quest.setScale(0.6f, 0.6f);*/
-
-
     view.reset(FloatRect(0, 0, 640, 480));
 
     Clock clock;
@@ -142,17 +41,29 @@ bool startGame(){
     Music music;
     music.openFromFile("../src/musics/srednevekove-950.ogg");
     music.setLoop(true);
-    music.play();
+    //music.play();
 
     Player p("hero.png", 32, 32, 96.0, 96.0);
 
-    bool menu = true, deathView = false;
+    String currentMode = "Menu";
     while (window.isOpen()){
-        if (menu) {
-            menu = drawMenu(window);
-            p.resetPlayer(32, 32, 96.0, 96.0);
+        Event event{};
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::KeyPressed)
+
+
         }
-        else {
+        /*if (currentMode == "Menu") {
+            currentMode = menu.controlMenu(window);
+            window.clear();
+            menu.drawMenu(window);
+            window.display();
+
+            //p.resetPlayer(32, 32, 96.0, 96.0);
+            //map1.resetMap(TileMap1);
+        }
+        else if (currentMode == "Game"){
             float time = clock.getElapsedTime().asMicroseconds();
             clock.restart();
             time = time / 800;
@@ -184,7 +95,7 @@ bool startGame(){
                             }
                         }
                     }*/
-            }
+            /*}
 
 
             p.update(time, map1);
@@ -206,18 +117,20 @@ bool startGame(){
                 window.draw(text);
             }*/
 
-            window.draw(p.sprite);
+           /* window.draw(p.sprite);
             window.display();
             if (!p.life)
-                deathView = true;
-        }
-        if (deathView){
-            menu = drawDeathView(window);
-            if (!menu)
-                window.close();
-            else
-                deathView = false ;
-        }
+                currentMode = "Death";
+
+        } else if (currentMode == "Death") {
+            window.clear();
+            currentMode = death.control(window);
+            death.drawDeath(window);
+            window.display();
+        } else if (currentMode == "Exit"){
+            window.close();
+            return false;
+        }*/
     }
     return false;
 }
